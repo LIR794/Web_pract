@@ -1,0 +1,94 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.background {
+    background-color: #000;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Центрируем блоки горизонтально */
+    align-content: center; /* Центрируем блоки вертикально */
+    perspective: 1000px;
+    position: relative;
+    max-height: 100vh; /* Ограничение максимальной высоты */
+    overflow: auto;
+}
+
+.number-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.falling-number {
+    position: absolute;
+    color: #00FF00; /* Зеленый цвет */
+    font-size: 12px; /* Уменьшаем размер шрифта */
+    font-family: Arial, sans-serif;
+    opacity: 0.7;
+    animation: fallingNumbers 3s linear infinite; /* Уменьшаем продолжительность анимации */
+}
+
+@keyframes fallingNumbers {
+    0% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+.background::before {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    animation: fallingNumbers 10s linear infinite;
+    color: #00FF00;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.menu-item {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    perspective: 1000px;
+    cursor: pointer;
+    display: flex; /* Добавляем display: flex; для центрирования содержимого по вертикали и горизонтали */
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    border: 1px solid #444;
+}
+
+.menu-item:hover .box {
+    transform: translateZ(50px);
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
